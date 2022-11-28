@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<meta charset="utf-8" name="viewport"
+		content="width=device-width, initial-scale=1"
+		http-equiv="X-UA-Conpatible" />
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<title>Update Cat</title>
+
+</h:head>
+<h:body style="background-color: ##0B1616;">
+	<center>
+		<h2>
+			<h:outputText value="Update Cat" />
+		</h2>
+	</center>
+
+	<center>
+		<h:form>
+			<div>
+				<h:outputLabel>IdCat </h:outputLabel>
+				<h:outputText value="#{CategorieManagedBean.setCategorie(param['idCat'])}" />
+			</div>
+			<br />
+			<div>
+				<h:outputLabel>libelle</h:outputLabel>
+
+				<div>
+					<f:facet name="header">libelle</f:facet>
+					<h:inputText value="#{CategorieManagedBean.nomCat}" style="width: 200px; height: 20px;" />
+				</div>
+			</div>
+			<br />
+			
+			<div>
+				<h:commandButton value="update"
+					action="#{CategorieManagedBean.update(CategorieBean)}"></h:commandButton>
+			</div>
+
+		</h:form>
+	</center>
+</h:body>
+
+</html>
