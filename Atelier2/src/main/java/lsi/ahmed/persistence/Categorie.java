@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -22,7 +23,11 @@ public class Categorie {
 
 	@Column(nullable = true, length = 45)
 	private String libelle;
-
+	
+	@Column(nullable = true, length = 52428800)
+	@Lob
+	private byte[] imgCat;
+	
 	@OneToMany
 	@JoinColumn(name = "id_cat")
 	private List<Produit> listProd;
@@ -33,10 +38,19 @@ public class Categorie {
 		
 	}
 
-	public Categorie(String libelle) {
+	public Categorie(String libelle, byte[] img) {
 		// TODO Auto-generated constructor stub
 		super();
 		this.libelle = libelle;
+		this.imgCat = img ;
+	}
+
+	public Categorie(int id, String libelle2, byte[] img) {
+		// TODO Auto-generated constructor stub
+		super();
+		this.idCat = id ;
+		this.libelle = libelle2;
+		this.imgCat = img ;
 	}
 
 	public int getIdCat() {
@@ -61,6 +75,23 @@ public class Categorie {
 
 	public void setListProd(List<Produit> listProd) {
 		this.listProd = listProd;
+	}
+	
+
+	public String getLibelle() {
+		return libelle;
+	}
+
+	public void setLibelle(String libelle) {
+		this.libelle = libelle;
+	}
+
+	public byte[] getImgCat() {
+		return imgCat;
+	}
+
+	public void setImgCat(byte[] imgCat) {
+		this.imgCat = imgCat;
 	}
 
 	@Override

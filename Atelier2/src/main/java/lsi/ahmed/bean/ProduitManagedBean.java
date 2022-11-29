@@ -1,6 +1,7 @@
 package lsi.ahmed.bean;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -68,15 +69,34 @@ public class ProduitManagedBean {
 	public void setCat(Categorie cat) {
 		this.cat = cat;
 	}
+	
+	private List<Categorie> listeCategories = new ArrayList<Categorie>();
+	
 	//enregistrer un produit
 	public String save(ProduitManagedBean bean) {
 		return DatabaseOperations.AjouterProduit(bean.libelle, bean.qte, bean.pu, bean.desc, bean.getIdcat()) ;
 	}
+	
+	//liste de produit par categorie
+	@SuppressWarnings("unchecked")
+	public List<Produit> listeProduits(int id) {
+
+		this.cat = DatabaseOperations.getCategorieById(id);
+		return DatabaseOperations.getAllProduits(id);
+
+	}
+	
+	//liste de categorie
+	public List listCategories() {
+		return DatabaseOperations.getAllCategories();
+	}
+	
 	//liste de produit
 	@SuppressWarnings("unchecked")
 	public List<Produit> listProduits() {
 		return DatabaseOperations.getAllProduits();
 	}
+	
 	//liste de produit par categorie
 	@SuppressWarnings("unchecked")
 	public List<Produit> listProduits(int id) {
@@ -94,15 +114,12 @@ public class ProduitManagedBean {
 		Produit p = DatabaseOperations.getProduitById(idProd);
 		return DatabaseOperations.deleteProduit(p.getIdProd());
 	}
-	//redirection ajout du produit
+
 	public String redirectAddProd() {
 		return "addProduit.xhtml?faces-redirect=true";
 	}
-	//liste de categorie
-	public List listCategories() {
-		return DatabaseOperations.getAllCategories();
-	}
 	
+	//mise a jour d'un produit
 	public String updateProduit(ProduitManagedBean bean) throws IOException {
 		Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
 
@@ -111,7 +128,9 @@ public class ProduitManagedBean {
 	}
 	
 	//redirection mis a jour un produit
-	public String redirectUpdateUpdate(int idProd) {
+	public String redirectUpdate(int idProd) 
+	{
+
 		Produit p = DatabaseOperations.getProduitById(idProd);
 
 		this.libelle = p.getNomProd();
@@ -121,6 +140,11 @@ public class ProduitManagedBean {
 		this.cat = p.getCat();
 
 		return "updateProduit.xhtml?faces-redirect=true&idProd=" + idProd;
+	}
+	public int setProduit(int idProd) {
+		this.idProd = DatabaseOperations.getProduitById(idProd).getIdProd();
+		this.libelle = DatabaseOperations.getProduitById(idProd).getNomProd();
+		return this.idProd;
 	}
 	
 }

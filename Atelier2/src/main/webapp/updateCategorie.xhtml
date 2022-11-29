@@ -8,7 +8,7 @@
 	<title>Update Cat</title>
 
 </h:head>
-<h:body style="background-color: ##0B1616;">
+<h:body style="background-color: #0B1616;">
 	<center>
 		<h2>
 			<h:outputText value="Update Cat" />
@@ -31,7 +31,10 @@
 				</div>
 			</div>
 			<br />
-			
+			<h:outputLabel> Image </h:outputLabel>
+				<div>
+					<h:inputFile value="#{CategorieManagedBean.img}" style="width: 200px; height: 20px;"></h:inputFile>
+				</div>
 			<div>
 				<h:commandButton value="update"
 					action="#{CategorieManagedBean.update(CategorieBean)}"></h:commandButton>

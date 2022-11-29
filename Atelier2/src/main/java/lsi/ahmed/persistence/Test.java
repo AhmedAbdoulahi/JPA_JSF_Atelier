@@ -18,9 +18,9 @@ public class Test {
 				em.persist(client);
 				em.getTransaction().commit();
 				*/
-				Categorie  c = new Categorie("Technologie");
+				/*Categorie  c = new Categorie("Technologie");
 				em.persist(c);
-				em.getTransaction().commit();
+				em.getTransaction().commit();*/
 				
 				/*Produit prod = new Produit("pc", 2 ,(float) 6200 ,"corI5",1);
 				em.persist(prod);

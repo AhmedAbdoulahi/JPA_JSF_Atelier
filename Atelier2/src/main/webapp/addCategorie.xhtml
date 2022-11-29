@@ -22,6 +22,10 @@
 					<h:inputText value="#{CategorieManagedBean.libelle}" style="width: 200px; height: 20px;"></h:inputText>
 				</div>
 				<br />
+				<h:outputLabel> Image </h:outputLabel>
+				<div>
+					<h:inputFile value="#{CategorieManagedBean.img}" style="width: 200px; height: 20px;"></h:inputFile>
+				</div>
 			<div>
 				<h:commandButton value="Save" action="#{CategorieManagedBean.save(CategorieManagedBean)}"></h:commandButton>
 			</div>

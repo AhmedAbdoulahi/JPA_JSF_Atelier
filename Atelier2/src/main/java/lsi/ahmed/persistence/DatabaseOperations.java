@@ -1,5 +1,6 @@
 package lsi.ahmed.persistence;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -54,17 +55,25 @@ public class DatabaseOperations {
 			}
 
 			//ajouter categorie
-			public static String creerCategorie(String lib ) {
+			public static String creerCategorie(String lib,byte[] img ) {
 				if (!transactionObj.isActive()) {
 					transactionObj.begin();
 				}
 
-				Categorie c = new Categorie(lib);
+				Categorie c = new Categorie(lib,img);
 
 				entityMgrObj.persist(c);
 				transactionObj.commit();
 
 				return "listCategories.xhtml?faces-redirect=true";
+			}
+			//Ajouter Panier
+			public static String creerPanier(int idPa, int qte, Date dateAjout, Client idCli) {
+				if (!transactionObj.isActive()) {
+					transactionObj.begin();
+				}
+				Panier p = new Panier(idPa,qte,dateAjout,idCli) ;
+				return "listPaniers.xhtml?faces-redirect=true";
 			}
 
 			//list des categorie
@@ -113,8 +122,7 @@ public class DatabaseOperations {
 					transactionObj.begin();
 				}
 
-				Query queryObj = entityMgrObj.createQuery(
-						"UPDATE Produit p SET p.libelle=:lib, p.quantiteProd=:qte, p.descProd=:desc, p.puProd=:pu, p.cat=:cat p WHERE p.idProd = "+ prod.getIdProd());
+				Query queryObj = entityMgrObj.createQuery("UPDATE Produit p SET p.libelle=:lib, p.quantiteProd=:qte, p.descProd=:desc, p.puProd=:pu, p.cat=:cat p WHERE p.idProd = "+ prod.getIdProd());
 
 				queryObj.setParameter("lib", prod.getNomProd());
 				queryObj.setParameter("qte", prod.getQuantiteProd());
@@ -156,6 +164,22 @@ public class DatabaseOperations {
 				transactionObj.commit();
 
 				return "listProduits.xhtml?faces-redirect=true";
+			}
+			//delete Panier
+			public static String deletePanier(int idPa) {
+				
+				if (!transactionObj.isActive()) {
+					transactionObj.begin();
+				}
+				//cherche le produit par son id grace a la methode find(class,identifiant)
+				Panier panier = entityMgrObj.find(Panier.class, idPa);
+
+				entityMgrObj.remove(panier);
+
+				transactionObj.commit();
+
+				return "listPaniers.xhtml?faces-redirect=true";
+				
 			}
 
 			//verification d'existance ou pas d'une cat
@@ -203,6 +227,20 @@ public class DatabaseOperations {
 					return list;
 				} 
 				else {
+					return null;
+				}
+			}
+			
+			//lister les panierss
+			@SuppressWarnings("unchecked")
+			public static List getAllPaniers() {
+				Query queryObj = entityMgrObj.createQuery("SELECT p FROM Panier p");
+				List<Panier> list = queryObj.getResultList();
+				if (list != null && list.size() > 0) {
+					return list;
+				} 
+				else 
+				{
 					return null;
 				}
 			}

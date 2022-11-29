@@ -29,5 +29,15 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/abdou/.m2/repository/org/primefaces/primefaces/5.1/primefaces-5.1.jar" sourcepath="C:/Users/abdou/.m2/repository/org/primefaces/primefaces/5.1/primefaces-5.1-sources.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="org.eclipse.jst.component.archivename" value="primefaces-5.1.jar"/>
+			<attribute name="maven.groupId" value="org.primefaces"/>
+			<attribute name="maven.artifactId" value="primefaces"/>
+			<attribute name="maven.version" value="5.1"/>
+			<attribute name="maven.scope" value="compile"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

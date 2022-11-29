@@ -7,16 +7,17 @@
 <persistence-unit name="unit" transaction-type="RESOURCE_LOCAL">
  	  <class>lsi.ahmed.persistence.Produit</class>
  	  <class>lsi.ahmed.persistence.Categorie</class>
+ 	  <class>lsi.ahmed.persistence.Panier</class>
+ 	  <class>lsi.ahmed.persistence.Client</class>
+ 	  <class>lsi.ahmed.persistence.Commande</class>
  	  
       <properties>
          <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-         <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/gecole"/>
+         <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/atelier2"/>
          <property name="javax.persistence.jdbc.user" value="root"/>
          <property name="javax.persistence.jdbc.password" value=""/>
          <property name="eclipselink.ddl-generation" value="create-tables"/>
       </properties>
       
-      
-       
    </persistence-unit>
 </persistence>

@@ -11,7 +11,7 @@
 		http-equiv="X-UA-Conpatible" />
 	<title>Catégories</title>
 </h:head>
-<h:body style="background-color: ##0B1616; margin: 20px;">
+<h:body style="background-color: #0B1616; margin: 20px;">
 	<center>
 		<h2>
 			<h:outputText value="Catégories" />
@@ -28,7 +28,13 @@
 					<f:facet name="header">libelle</f:facet>
 					<h:outputText value="#{cat.libelle}" /> 
 				</b:column>
-
+				<b:column>
+					<f:facet name="header">Image</f:facet>
+					<p:graphicImage value="#{CategorieManagedBean.getImage()}" width="50"
+						legth="50">
+						<f:param name="idCat" value="#{cat.idCat}" />
+					</p:graphicImage>
+				</b:column>
 
 				<b:column>
 					<f:facet name="header">Update</f:facet>
